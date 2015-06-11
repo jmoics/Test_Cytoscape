@@ -1,0 +1,14 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk">
+<?script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"?>
+<?script src="js/cytoscape.min.js"?>
+<style src="style.css" />
+<window title="new page title" border="none" width="100%" height="100%" xmlns:w="http://www.zkoss.org/2005/zk/client">
+    <script src="code2.js"/>
+    <div id="cy" width="100%" height="90%"/>
+    <button label="Click Me To disable textbox using jquery" w:onClick="testjq()"/>
+    <div id="naa" >
+        hola
+    </div>
+</window>
+</zk>

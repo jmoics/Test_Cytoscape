@@ -1,0 +1,24 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Client-side ZK Part 1" border="normal" xmlns:w="http://www.zkoss.org/2005/zk/client">
+  <?script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"?>
+  
+  <script>
+    function testjq(){
+     jq(jq('$tb')).attr('disabled', true);  
+    };
+    
+    jq(document).ready(function () {
+        jq(jq('$tb')).attr('disabled', true);  
+    });
+  </script>
+  
+  <div>Welcome to ZK Fiddle , run it right now!</div>
+  <button label="Click Me To disable textbox using jquery" w:onClick="testjq()"/>
+  <textbox id="tb"/>
+  
+  
+  
+</window>
+</zk>
+

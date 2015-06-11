@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Created by ZK Studio -->
+
+<zk>
+   <system-config>
+       <disable-event-thread>false</disable-event-thread>
+   </system-config>
+   <session-config>
+      <session-timeout>3600</session-timeout>
+   </session-config>
+</zk>

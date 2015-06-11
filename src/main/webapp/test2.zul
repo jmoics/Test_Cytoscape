@@ -1,0 +1,87 @@
+<?page title="Auto Generated index.zul"?>
+
+<zk xmlns:w="http://www.zkoss.org/2005/zk/client">
+	<!-- CLIENT SIDE FUNCTIONALITY!	-->
+	<?script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"?>
+	<script>
+		<![CDATA[
+			function updateWithExplosion (value, fromServer, updateColor) {
+				
+				if(this.desktop) {
+					jq(this).effect("explode", 
+							{}, 
+							500);
+				}
+				
+				this.$setValue(value, fromServer);
+				
+				if (this.desktop) {	
+					if (updateColor) {
+						jq(this.getCaveNode().parentNode.parentNode).css({background: ((value<0) ? 'red':'green')});
+						this.setStyle('color: #FFFFFF');
+					}
+					jq(this).show("drop", {direction : "up"}, 1000);
+				}
+			}
+			
+			
+			function updateWithColorAndExplosion (value, fromServer) {
+				updateWithExplosion.call(this, value, fromServer, true);
+			}
+		]]>
+	</script>
+	
+	
+	<!-- SERVER SIDE FUNCTIONALITY! -->
+	<zscript>
+		<![CDATA[
+			public void updateStocks() {
+				Object[] values = getStockValues();
+				Label stockPrice = stockGrid.getFellow(values[0]);
+				Label stockDifference = stockGrid.getFellow(values[1]);
+
+				int newValue = ((Number)values[2]).intValue();
+				int difference = newValue - Integer.parseInt(stockPrice.getValue());				
+
+				stockPrice.setValue(Long.toString(newValue));
+				stockDifference.setValue(Long.toString(difference));
+			}
+			
+			public Object[] getStockValues() {
+				int randomControl = (int)Math.ceil(Math.random() * 3);
+				return new Object[] {"stockPrice" + randomControl,
+					"stockDifference" + randomControl,
+					(int)Math.ceil((Math.random() * 10) + 95)};
+			}
+		]]>
+	</zscript>
+	
+	
+	<!-- ZUL MARKUP (UI IMPLEMENTATION!) -->
+	<timer id="updateTimer" delay="3000" repeats="true" onTimer="updateStocks()" />
+	
+	<grid id="stockGrid" fixedLayout="true">
+		<columns>
+			<column label="Stock name" />
+			<column label="Stock value" />
+			<column label="Stock difference" />
+		</columns>
+		<rows>
+			<row>
+				<label id="stockName1" value="Ultra Corp: " />
+				<label id="stockPrice1" value="100" w:setValue="updateWithExplosion"/>
+				<label id="stockDifference1" value="0"  w:setValue="updateWithColorAndExplosion"/>
+			</row>
+			<row>
+				<label id="stockName2" value="Amazing Corp: " />
+				<label id="stockPrice2" value="100" w:setValue="updateWithExplosion"/>
+				<label id="stockDifference2" value="0" w:setValue="updateWithColorAndExplosion"/>
+			</row>
+			<row>
+				<label id="stockName3" value="Great Corp: " />
+				<label id="stockPrice3" value="100" w:setValue="updateWithExplosion"/>
+				<label id="stockDifference3" value="0" w:setValue="updateWithColorAndExplosion"/>
+			</row>
+		</rows>
+	</grid>
+</zk>

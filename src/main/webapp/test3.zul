@@ -1,0 +1,35 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:zk="http://www.zkoss.org/2005/zk">
+  <script>
+      jq(document).ready(function () {
+                         jq('nav > li > a').click(function(){
+                            if (jq(this).attr('class') != 'active'){
+                              jq('nav li ul').slideUp();
+                              jq(this).next().slideToggle();
+                              jq('nav li a').removeClass('active');
+                              jq(this).addClass('active');
+                            }
+                          });
+                        });
+  </script>
+  <window border="normal" title="hello"   xmlns:w="http://www.zkoss.org/2005/zk/client">
+    
+    <div>Welcome to ZK Fiddle , run it right now!
+      
+      <ul id="nav">
+      <li>
+        <a w:onClick=""><span>puerba 1</span></a>
+          <ul>
+            <li>
+              <a><span>prueba 1.1</span></a>
+            </li>
+          </ul>
+      </li>
+    </ul>
+    
+    </div>
+    
+    
+  </window>
+</zk>
+
